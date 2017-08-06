@@ -1,6 +1,9 @@
 
 TARGET = lib_periph_driver.a
-SRC = stm32f4xx_gpio.o stm32f4xx_rcc.o
+
+SRC = stm32f4xx_gpio.o stm32f4xx_rcc.o misc.o stm32f4xx_flash.o stm32f4xx_tim.o stm32f4xx_usart.o
+
+
 
 ############### Compilation configuration ################
 CROSS_COMPILE     ?= arm-none-eabi-

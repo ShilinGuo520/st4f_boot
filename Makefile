@@ -42,7 +42,7 @@ start_up.o:./cm4/start_up.S
 main.o:main.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(TARGET).elf:$(SRC)
+$(TARGET).elf:clean $(SRC)
 	$(LD) $(LDFLAGS) $(SRC) --output $(TARGET).elf
 
 lib_periph_driver.a:
