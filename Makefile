@@ -14,6 +14,7 @@ CC = $(CROSS_COMPILE)gcc
 LD = $(CROSS_COMPILE)ld
 SIZE = $(CROSS_COMPILE)size
 OBJCOPY = $(CROSS_COMPILE)objcopy
+OBJDUMP = $(CROSS_COMPILE)objdump
 
 PROCESSOR = -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
 
@@ -44,12 +45,13 @@ main.o:main.c
 
 $(TARGET).elf:clean $(SRC)
 	$(LD) $(LDFLAGS) $(SRC) --output $(TARGET).elf
+	$(OBJDUMP) -D $(TARGET).elf > $(TARGET).dump
 
 lib_periph_driver.a:
 	$(MAKE) -C st_lib/STM32F4xx_StdPeriph_Driver/src/
 
 
 clean:
-	rm -f *.o *.map *.elf *.bin *.obj *.a
+	rm -f *.o *.map *.elf *.bin *.obj *.a *.dump
 	$(MAKE) clean -C st_lib/STM32F4xx_StdPeriph_Driver/src/
 
