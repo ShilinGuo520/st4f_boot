@@ -2,8 +2,8 @@
 
 MEMORY
 {
-  RAM (xrw)     : ORIGIN = 0x20000000, LENGTH = 8K
-  FLASH (rx)    : ORIGIN = 0x08000000, LENGTH = 8K
+  RAM (xrw)     : ORIGIN = 0x20000000, LENGTH = 32K
+  FLASH (rx)    : ORIGIN = 0x08000000, LENGTH = 128K
 }
 
 SECTIONS
@@ -11,7 +11,7 @@ SECTIONS
 	.text :
 	{
 		. = ALIGN(0x4);
-		KEEP(start_up.o(.text))
+		KEEP(cm4/start_up.o(.text))
 		KEEP(*(.text*))
 		KEEP(*(.rodata))
 		KEEP(*(.rodata*))

@@ -150,7 +150,7 @@ LoopFillZerobss:
 	bl	main
 
 
-.globl __MSR_MSP
+# .globl __MSR_MSP
 .thumb_func
 __MSR_MSP:
     MSR msp, r0
