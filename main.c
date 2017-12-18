@@ -28,6 +28,38 @@
 /* Includes ------------------------------------------------------------------*/
 #include "uart.h"
 #include "timer.h"
+#include "ff.h"
+
+static int ViewRootDir(void)
+{
+	FRESULT result;
+	FATFS fs;
+	DIR DirInf;  
+	FILINFO FileInf;
+	
+	uint32_t cnt = 0;
+	
+	result = f_mount(0, &fs);
+	if (result)
+		goto err;
+	result = f_opendir(&DirInf, "/"); 
+	if (result)
+		goto err;
+	for (cnt = 0; ;cnt++) 
+	{
+		result = f_readdir(&DirInf,&FileInf);
+		if (result)
+			goto err;
+	}
+
+	return 0;	
+
+err:
+	f_mount(0, 0);
+	return -1;
+}
+
+
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
   */
@@ -48,6 +80,8 @@ int main(void)
 
   /* TIM PWM Out */
   tim_pwm_output();
+
+  ViewRootDir();
   
   while (1) {
     com1_puts("hello word \r\n");

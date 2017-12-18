@@ -13,7 +13,7 @@ LINK_FILE = './cm4/bootloader.ld'
 
 PROCESSOR =' -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16'
 
-CFLAGS = PROCESSOR + ' -Wall -fno-strict-aliasing -O0 -g3 -DSTM32F40_41xxx'
+CFLAGS = PROCESSOR + ' -fno-builtin -Wall -fno-strict-aliasing -O0 -g3 -DSTM32F40_41xxx'
 ASFLAGS = PROCESSOR
 LDFLAGS = '-T' + LINK_FILE + ' -Mmap > ' + TARGET + '.map'
 
